@@ -1,5 +1,7 @@
 package Ejercicio1;
 
+import Ejercicio1.Operaciones.Operacion;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,51 +19,54 @@ public class Calculadora {
     private JTextArea resultados;
     private float n1;
     private float n2;
-    private float n3=0;
+    private float n3 = 0;
+    private Operacion operacion;
 
-    public Calculadora(){
+    public Calculadora() {
         sumar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                n1=Integer.parseInt(txtnum1.getText());
-                n2=Integer.parseInt(txtnum2.getText());
+                n1 = Integer.parseInt(txtnum1.getText());
+                n2 = Integer.parseInt(txtnum2.getText());
 
-                resultados.setText(n1+ " + " + n2 + " = " + (n1 + n2));
                 n3 = n3 + (n1 + n2);
-                resultados.append("Total = " + n3 + "");
-);
+                resultados.append("Total = " + n3 + "\n");
+            }
+        });
+
+        restar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                n1 = Integer.parseInt(txtnum1.getText());
+                n2 = Integer.parseInt(txtnum2.getText());
+
+                n3 = n3 + (n1 - n2);
+                resultados.append("Total =" + n3 + "\n");
             }
         });
 
         multiplicar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                n1 =Integer.parseInt(txtnum1.getText());
-                n2 =Integer.parseInt(txtnum2.getText());
+                n1 = Integer.parseInt(txtnum1.getText());
+                n2 = Integer.parseInt(txtnum2.getText());
 
-                resultados.setText((n1+ " + " + n2 + " = " + (n1 * n2));
                 n3 = n3 + (n1 * n2);
-                resultados.append("Total = " + n3 + "");
+                resultados.append("Total = " + n3 + "\n");
             }
         });
-                restar.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        n1 =Integer.parseInt(txtnum1.getText());
-                        n2 =Integer.parseInt(txtnum2.getText());
 
-                        resultados.setText(n1 + "-" + n2 + "=" +(n1-n2));
-                        n3=n3 + (n1-n2);
-                        resultados.append("Total =" + n3 + "");
-                    }
-                });
 
-                dividir.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        n1 =Integer.parseInt(txtnum1.getText());
-                        n2 =Integer.parseInt(txtnum2.getText());
-                    }
-                });
+        dividir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                n1 = Integer.parseInt(txtnum1.getText());
+                n2 = Integer.parseInt(txtnum2.getText());
+
+                operacion=OperacionFactory.getOperacion(4);
+                n3=operacion.realizarOperacion(n1,n2)
+                resultados.append("Total =" + n3 + "\n");
+            }
+        });
     }
 }
