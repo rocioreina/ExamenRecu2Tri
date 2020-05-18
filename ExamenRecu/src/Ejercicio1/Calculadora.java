@@ -1,6 +1,7 @@
 package Ejercicio1;
 
 import Ejercicio1.Operaciones.Operacion;
+import Ejercicio1.Operaciones.OperacionFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class Calculadora {
     private JLabel num1;
     private JLabel num2;
     private JPanel panelMain;
+    private JScrollPane jspResultado;
     private JTextArea resultados;
     private float n1;
     private float n2;
@@ -29,7 +31,8 @@ public class Calculadora {
                 n1 = Integer.parseInt(txtnum1.getText());
                 n2 = Integer.parseInt(txtnum2.getText());
 
-                n3 = n3 + (n1 + n2);
+                operacion= OperacionFactory.getOperacion(1);
+                n3=operacion.realizarOperacion(n1,n2);
                 resultados.append("Total = " + n3 + "\n");
             }
         });
@@ -40,7 +43,8 @@ public class Calculadora {
                 n1 = Integer.parseInt(txtnum1.getText());
                 n2 = Integer.parseInt(txtnum2.getText());
 
-                n3 = n3 + (n1 - n2);
+                operacion= OperacionFactory.getOperacion(2);
+                n3=operacion.realizarOperacion(n1,n2);
                 resultados.append("Total =" + n3 + "\n");
             }
         });
@@ -51,7 +55,8 @@ public class Calculadora {
                 n1 = Integer.parseInt(txtnum1.getText());
                 n2 = Integer.parseInt(txtnum2.getText());
 
-                n3 = n3 + (n1 * n2);
+                operacion= OperacionFactory.getOperacion(3);
+                n3=operacion.realizarOperacion(n1,n2);
                 resultados.append("Total = " + n3 + "\n");
             }
         });
@@ -63,10 +68,14 @@ public class Calculadora {
                 n1 = Integer.parseInt(txtnum1.getText());
                 n2 = Integer.parseInt(txtnum2.getText());
 
-                operacion=OperacionFactory.getOperacion(4);
-                n3=operacion.realizarOperacion(n1,n2)
+                operacion= OperacionFactory.getOperacion(4);
+                n3=operacion.realizarOperacion(n1,n2);
                 resultados.append("Total =" + n3 + "\n");
             }
         });
+        }
+        public JPanel getPanel() {
+            return panelMain;
     }
+
 }
